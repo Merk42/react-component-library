@@ -1,0 +1,120 @@
+@use "sassvars";
+
+@mixin even-grid-html-classes($size) {
+  @for $i from 1 through 12 {
+    .#{$size}-#{$i}-across{
+      --gridcolumns: #{$i};
+    }
+  }
+}
+.even-grid,
+.even-inline-grid{
+  grid-template-columns: repeat(var(--gridcolumns, 1), minmax(0, 1fr))
+}
+.even-grid{
+  display: grid;
+}
+.even-inline-grid{
+  display: inline-grid;
+}
+ol.even-grid,
+ul.even-grid,
+ol.even-inline-grid,
+ul.even-inline-grid{
+  margin-left: 0;
+  list-style-type: none;
+}
+.even-grid.grandchild-contents > *,
+.even-inline-grid.grandchild-contents > *{
+  display: contents;
+}
+@media #{sassvars.$small-up} {
+  @include even-grid-html-classes($size:small);
+}
+
+@media #{sassvars.$medium-up} {
+  @include even-grid-html-classes($size:medium);
+}
+
+@media #{sassvars.$large-up} {
+  @include even-grid-html-classes($size:large);
+}
+
+@media #{sassvars.$xlarge-up} {
+  @include even-grid-html-classes($size:xlarge);
+}
+
+@media #{sassvars.$xxlarge-up} {
+  @include even-grid-html-classes($size:xxlarge);
+}
+
+.grid-gap-xs{
+  gap: sassvars.$margin-xs;
+}
+.grid-gap-sm{
+  gap: sassvars.$margin-sm;
+}
+.grid-gap-md{
+  gap: sassvars.$margin-md;
+}
+.grid-gap-lg{
+  gap: sassvars.$margin-lg;
+}
+.grid-gap-xl{
+  gap: sassvars.$margin-xl;
+}
+.column-gap-xs{
+  column-gap: sassvars.$margin-xs;
+}
+.column-gap-sm{
+  column-gap: sassvars.$margin-sm;
+}
+.column-gap-md{
+  column-gap: sassvars.$margin-md;
+}
+.column-gap-lg{
+  column-gap: sassvars.$margin-lg;
+}
+.column-gap-xl{
+  column-gap: sassvars.$margin-xl;
+}
+.row-gap-xs{
+  row-gap: sassvars.$margin-xs;
+}
+.row-gap-sm{
+  row-gap: sassvars.$margin-sm;
+}
+.row-gap-md{
+  row-gap: sassvars.$margin-md;
+}
+.row-gap-lg{
+  row-gap: sassvars.$margin-lg;
+}
+.row-gap-xl{
+  row-gap: sassvars.$margin-xl;
+}
+
+
+/* temporary location for flex-content */
+.flex-content{
+  display: flex;
+  flex-direction: column;
+}
+.flex-content.row{
+  flex-direction: row;
+}
+.flex-content.gap-xs{
+  gap: sassvars.$margin-xs;
+}
+.flex-content.gap-sm{
+  gap: sassvars.$margin-sm;
+}
+.flex-content.gap-md{
+  gap: sassvars.$margin-md;
+}
+.flex-content.gap-lg{
+  gap: sassvars.$margin-lg;
+}
+.flex-content.gap-xl{
+  gap: sassvars.$margin-xl;
+}

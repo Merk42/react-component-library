@@ -1,0 +1,190 @@
+@use "sass:list";
+@use "sass:math";
+
+$include-html-classes: true;
+$include-print-styles: true !default;
+
+$columns: 12;
+$row-width: 62.5em;
+$gutter: 0.375rem;
+
+$primary: var(--primary);
+$secondary: var(--secondary);
+$active: var(--active);
+$inactive: var(--inactive);
+$white: var(--white);
+$urgent: var(--urgent);
+$background1: var(--background1);
+$background2: var(--background2);
+$background3: var(--background3);
+$black: var(--black);
+
+$accent1: var(--accent1);
+$accent2: var(--accent2);
+$accent3: var(--accent3);
+$accent4: var(--accent4);
+$accent5: var(--accent5);
+$accent6: var(--accent6);
+
+$facebook: var(--facebook);
+$pinterest: var(--pinterest);
+$twitter: var(--twitter);
+$instagram: var(--instagram);
+
+$brand-primary: $accent1;
+$brand-secondary: $accent2;
+$disabled: $inactive;
+
+@mixin element-invisible {
+    clip: rect(1px, 1px, 1px, 1px);
+    height: 1px;
+    overflow: hidden;
+    position: absolute !important;
+    width: 1px;
+}
+
+@mixin element-invisible-off {
+    position: static !important;
+    height: auto;
+    width: auto;
+    overflow: visible;
+    clip: auto;
+}
+
+@function strip-unit($num) {
+    @return math.div($num, $num * 0 + 1);
+}
+@function rem-calc($pixels) {
+    @return math.div($pixels, 16) + 'rem';
+}
+$rem-base: 16px !default;
+@function rem-calc($values, $base-value: $rem-base) {
+    $max: list.length($values);
+
+    @if $max == 1 {
+        @return convert-to-rem(list.nth($values, 1), $base-value);
+    }
+
+    $remValues: ();
+    @for $i from 1 through $max {
+        $remValues: list.append($remValues, convert-to-rem(list.nth($values, $i), $base-value));
+    }
+    @return $remValues;
+}
+
+@function em-calc($values) {
+    $remValues: rem-calc($values);
+
+    $max: list.length($remValues);
+
+    @if $max == 1 {
+        @return strip-unit(list.nth($remValues, 1)) * 1em;
+    }
+
+    $emValues: ();
+    @for $i from 1 through $max {
+        $emValues: list.append($emValues, strip-unit(list.nth($remValues, $i)) * 1em);
+    }
+    @return $emValues;
+}
+@function convert-to-rem($value, $base-value: $rem-base) {
+    $value: math.div(strip-unit($value), strip-unit($base-value)) * 1rem;
+    @if ($value == 0rem) {
+        $value: 0;
+    } // Turn 0rem into 0
+    @return $value;
+}
+
+$small-breakpoint: em-calc(640);
+$medium-breakpoint: em-calc(1024);
+$large-breakpoint: em-calc(1200);
+$xlarge-breakpoint: em-calc(1440);
+
+$small-range: (0, $small-breakpoint);
+$medium-range: ($small-breakpoint + em-calc(1), $medium-breakpoint);
+$large-range: ($medium-breakpoint + em-calc(1), $large-breakpoint);
+$xlarge-range: ($large-breakpoint + em-calc(1), $xlarge-breakpoint);
+$xxlarge-range: ($xlarge-breakpoint + em-calc(1), em-calc(99999999));
+
+$screen: "only screen";
+
+$landscape: "#{$screen} and (orientation: landscape)";
+$portrait: "#{$screen} and (orientation: portrait)";
+/*
+$small-up: $screen;
+$small-only: "#{$screen} and (width <= #{$small-breakpoint})";
+
+$medium-up: "#{$screen} and (width > #{$small-breakpoint})";
+$medium-only: "#{$screen} and (#{$small-breakpoint} < width <= #{$medium-breakpoint})";
+
+$large-up: "#{$screen} and (width > #{$medium-breakpoint})";
+$large-only: "#{$screen} and (#{$medium-breakpoint} < width <= #{$large-breakpoint})";
+
+$xlarge-up: "#{$screen} and (width > #{$large-breakpoint})";
+$xlarge-only: "#{$screen} and (#{$large-breakpoint} < width <= #{$xlarge-breakpoint})";
+
+$xxlarge-up: "#{$screen} and (width > #{$xlarge-breakpoint})";
+$xxlarge-only: "#{$screen} and (width > #{$xlarge-breakpoint})";
+*/
+@function lower-bound($range) {
+  @if list.length($range) <= 0 {
+      @return 0;
+  }
+  @return list.nth($range, 1);
+}
+
+@function upper-bound($range) {
+  @if list.length($range) < 2 {
+      @return 999999999999;
+  }
+  @return list.nth($range, 2);
+}
+$small-up: $screen;
+$small-only: "#{$screen} and (max-width: #{upper-bound($small-range)})";
+
+$medium-up: "#{$screen} and (min-width:#{lower-bound($medium-range)})";
+$medium-only: "#{$screen} and (min-width:#{lower-bound($medium-range)}) and (max-width:#{upper-bound($medium-range)})";
+
+$large-up: "#{$screen} and (min-width:#{lower-bound($large-range)})";
+$large-only: "#{$screen} and (min-width:#{lower-bound($large-range)}) and (max-width:#{upper-bound($large-range)})";
+
+$xlarge-up: "#{$screen} and (min-width:#{lower-bound($xlarge-range)})";
+$xlarge-only: "#{$screen} and (min-width:#{lower-bound($xlarge-range)}) and (max-width:#{upper-bound($xlarge-range)})";
+
+$xxlarge-up: "#{$screen} and (min-width:#{lower-bound($xxlarge-range)})";
+$xxlarge-only: "#{$screen} and (min-width:#{lower-bound($xxlarge-range)}) and (max-width:#{upper-bound($xxlarge-range)})";
+
+$retina: (
+    "#{$screen} and (-webkit-min-device-pixel-ratio: 2)",
+    "#{$screen} and (min--moz-device-pixel-ratio: 2)",
+    "#{$screen} and (-o-min-device-pixel-ratio: 2/1)",
+    "#{$screen} and (min-device-pixel-ratio: 2)",
+    "#{$screen} and (min-resolution: 192dpi)",
+    "#{$screen} and (min-resolution: 2dppx)"
+);
+
+$font-family-sans-serif: var(--font-family-sans-serif);
+$font-family-serif: var(--font-family-sans-serif);
+
+$margin-xs: 0.25rem;
+$margin-sm: 0.75rem;
+$margin-md: 1.5rem;
+$margin-lg: 3rem;
+$margin-xl: 5rem;
+
+/* button-small-size ? */
+/* input-border ? */
+
+// IMPORT ONCE
+// We use this to prevent styles from being loaded multiple times for compenents that rely on other components.
+$modules: () !default;
+@mixin exports($name) {
+    // check if code with name is already stored inside of $modules
+    @if (list.index($modules, $name) == false) {
+        // if not push it into the list
+        $modules: list.append($modules, $name);
+        // include code that particular code
+        @content;
+    }
+}
+$icon-gap: .25rem;

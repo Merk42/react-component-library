@@ -1,0 +1,53 @@
+@use "../scss/sassvars";
+.tabs{
+	--_tab-border-height:.125rem;
+	display: flex;
+	justify-content: center;
+	text-align:center;
+  	border-bottom:var(--_tab-border-height) solid var(--black-light);
+	margin:1.25rem 0 0 0;
+	gap: sassvars.$margin-md;
+	@media #{sassvars.$medium-up} {
+		margin-top:2.5rem;
+	}
+}
+.tabs-content{
+	padding-top:sassvars.$margin-md
+}
+
+
+button,
+button:hover{
+	all: unset;
+	color:var(--black-mid);
+	padding-bottom:.75rem;
+	border-bottom:var(--_tab-border-height) solid transparent;
+	margin-bottom: calc(-1 *  var(--_tab-border-height));
+	text-align: left;
+	margin-left:0!important; /* button+button margin causes more issues that it solves */
+
+}
+button:hover{
+	cursor: pointer;
+}
+button[aria-selected="true"]{
+	/* border-bottom-color:var(--pine-mid); */
+	color: var(--pine-mid);
+}
+
+[role="tablist"] {
+	position: relative
+}
+[role="tablist"]::after {
+	content:"";
+	position:absolute;
+	left:0;
+	right:0;
+	bottom:calc(-1* var(--_tab-border-height));
+	height:var(--_tab-border-height);
+	background-color: var(--pine-mid);
+	scale: var(--_width, 100%) 1;
+	translate: var(--_left, 0);
+	transform-origin: 0 0;
+	transition: scale 200ms, translate 200ms;
+}

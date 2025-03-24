@@ -1,0 +1,49 @@
+:root {
+    --black-mid: #666;
+    --black-dark: #000;
+    --black-light: #DDD;
+    --pine-mid: #006341;
+    --pine-dark: #003926;
+    --pine-light: #E1EFEA;
+    --persimmon-mid: #FFA549;
+    --persimmon-dark: #E27300;
+    --persimmon-light: #FEE4CA;
+    --poppy-mid: #EB5721;
+    --poppy-dark: #B23608;
+    --poppy-light: #FCCEBE;
+    --flamingo-mid: #F391A4;
+    --flamingo-dark: #D94F6A;
+    --flamingo-light: #F5DBE0;
+    --sky-mid: #2AC4E3;
+    --sky-dark: #0097B5;
+    --sky-light: #CCECF2;
+    --goldenrod-mid: #F5BC22;
+    --goldenrod-dark: #D69F09;
+    --goldenrod-light: #FBEFCC;
+  
+    --primary: var(--black-dark);
+    --secondary: var(--black-mid);
+    --active: var(--pine-mid);
+    --urgent: var(--poppy-dark);
+    --background1: var(--goldenrod-light);
+    --background2: var(--black-light);
+    --background3: var(--pine-light);
+    --accent1: var(--sky-mid);
+    --accent2: var(--persimmon-mid);
+    --accent3: var(--poppy-mid);
+    --accent4: var(--goldenrod-mid);
+    --accent5: var(--flamingo-mid);
+    --accent6: var(--sky-light);
+  
+    --brand-primary: #3EB1C8;
+    --brand-secondary: #ECA154;
+    --disabled: #AAA;
+    --inactive: #AAA;
+    --white: #FFFFFF;
+  
+  
+    --facebook:#3b5998;
+    --pinterest:#bd081c;
+    --twitter: #55acee;
+    --instagram: #000000;
+  }

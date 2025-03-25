@@ -1,19 +1,5 @@
 import React, { ChangeEvent } from 'react';
-import styled from 'styled-components';
-
-const Container = styled.div`
-  & > label,
-  & > select {
-    display:block;
-    width:100%;
-  }
-  & > label {
-    font-weight:bold;
-  }
-  & > select {
-    border:1px solid black
-  }
-`;
+import styles from './Forms.module.scss';
 
 interface Option {
   value: string;
@@ -34,16 +20,16 @@ const Select: React.FC<SelectProps> = ({ options, value, onChange, label, name }
   };
 
   return (
-    <Container>
-      {label && <label htmlFor={name}>{label}</label>}
-      <select id={name} name={name} value={value} onChange={handleChange}>
+    <div>
+      {label && <label htmlFor={name} className={styles.label}>{label}</label>}
+      <select className={styles.input} id={name} name={name} value={value} onChange={handleChange}>
         {options.map((option) => (
           <option key={option.value} value={option.value}>
             {option.label}
           </option>
         ))}
       </select>
-    </Container>
+    </div>
   );
 };
 

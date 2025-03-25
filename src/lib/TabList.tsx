@@ -1,25 +1,31 @@
 import React from "react";
-import { ReactElement, useState } from "react";
+import { ReactElement, useEffect, useRef, useState } from "react";
 import TabItem from "./TabItem";
 import { TabItemProps, TabListProps } from "../types/TabTypes";
 import { sanitizeForId } from "../utils/StringUtils";
 // import "./Tabs.css";
 import styles from './TabList.module.scss';
 
-function updateIndicator(index:number) {
-  /*
-  const ACTIVE_INDEX = this.tabs.toArray().findIndex(t => t.active() === true)
-  const L = this.btz()[ACTIVE_INDEX].nativeElement.offsetLeft + 'px';
-  const W = this.btz()[ACTIVE_INDEX].nativeElement.offsetWidth / this.tablist().nativeElement.offsetWidth * 100 + '%';
-  this.indicatorLeft.set(L);
-  this.indicatorWidth.set(W);
-  */
-}
 
 const TabList: React.FC<TabListProps> = ({ children, activeTabIndex = 0 }) => {
   const [activeTab, setActiveTab] = useState(activeTabIndex);
 
+  const updateIndicator = (index:number) => {
+    const childNodes = Array.from(parentRef?.current?.children);
+    const L = childNodes[index].offsetLeft + 'px';
+    const W = childNodes[index].offsetWidth / parentRef.current.offsetWidth * 100 + '%';
+    setIndicatorLeft(L);
+    setIndicatorWidth(W);
+  }
+
+  const parentRef = useRef(null);
+
+  const [indicatorLeft, setIndicatorLeft] = useState('0px');
+  const [indicatorWidth, setIndicatorWidth] = useState('0%');
+
+
   const handleTabClick = (index: number) => {
+    updateIndicator(index)
     setActiveTab(index);
   };
 
@@ -31,10 +37,11 @@ const TabList: React.FC<TabListProps> = ({ children, activeTabIndex = 0 }) => {
   return (
     <div className="custom-tabs">
       <div
+        ref={parentRef}
         className={styles.tabs}
         role="tablist"
         aria-orientation="horizontal"
-        style={{'--_left':'20px', '--_width':'300px'}as React.CSSProperties}
+        style={{'--_left':indicatorLeft, '--_width':indicatorWidth}as React.CSSProperties}
       >
         {tabs.map((tab, index) => (
             <button

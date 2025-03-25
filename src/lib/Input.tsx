@@ -1,19 +1,5 @@
 import { ChangeEvent, FC } from 'react'
-import styled from 'styled-components';
-
-const Container = styled.div`
-  & > label,
-  & > input {
-    display:block;
-    width:100%;
-  }
-  & > label {
-    font-weight:bold;
-  }
-  & > input {
-    border:1px solid black
-  }
-`;
+import styles from './Forms.module.scss';
 
 interface InputProps {
   type: 'text' | 'number' | 'email' | 'password'
@@ -37,9 +23,15 @@ const Input: FC<InputProps> = ({
   onChange,
 }) => {
   return (
-    <Container>
-      <label htmlFor={label}>{label}</label>
+    <div>
+      <label
+        htmlFor={label}
+        className={styles.label}
+      >
+        {label}
+      </label>
       <input
+        className={styles.input}
         type={type}
         id={label}
         value={value}
@@ -49,7 +41,7 @@ const Input: FC<InputProps> = ({
         disabled={disabled}
       />
       {error && <p className="error">Input filed can't be empty!</p>}
-    </Container>
+    </div>
   )
 }
 

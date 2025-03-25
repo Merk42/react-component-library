@@ -41,7 +41,7 @@ function PanelExample() {
                 <p>content for demo purposes</p>
                 <p>can contain anything</p>
             </Panel>
-
+            <hr />
             <div className="even-grid small-1-across medium-3-across grid-gap-sm">
                 <Select
                     name="size"

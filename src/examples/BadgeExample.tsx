@@ -11,12 +11,12 @@ function BadgeExample() {
             <Badge
                 number={icon}
             >content the badge is for</Badge>
-
+            <hr />
             <div className="even-grid small-1-across medium-3-across grid-gap-sm">
                 <Input
                     type="number"
-                    label="(Google) b Icon"
-                    name="gbicon"
+                    label="number in badge"
+                    name="badgenum"
                     value={icon}
                     onChange={e => setIcon(Number(e.target.value))}
                     placeholder="Enter text"

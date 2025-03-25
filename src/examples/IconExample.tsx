@@ -11,7 +11,7 @@ function IconExample() {
             <Icon
                 icon={icon}
             />
-
+            <hr />
             <div className="even-grid small-1-across medium-3-across grid-gap-sm">
                 <Input
                     type="text"

@@ -23,7 +23,7 @@ const Input: FC<InputProps> = ({
   onChange,
 }) => {
   return (
-    <div>
+    <div className={styles.fieldContainer}>
       <label
         htmlFor={label}
         className={styles.label}

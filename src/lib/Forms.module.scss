@@ -6,16 +6,13 @@ legend {
     display:block;
     width:100%;
     padding:0 0 0 .5rem;
-	background-color: var(--white);
-	border: 1px solid var(--secondary);
-	border-bottom: none;
-	border-radius: 0;
+	background-color:transparent;
 	color:var(--secondary);
 	font-size:.875rem;
 	font-weight:normal;
 	display:block;
 	margin:0;
-	border-radius: .25rem .25rem 0 0;
+	border:none;
 }
 .input,
 input,
@@ -30,11 +27,21 @@ textarea {
 	box-shadow:none;
 	height: 2.75rem;
 	color:var(--primary);
-	background-color:var(--white);
-	border-radius: 0 0 .25rem .25rem;
-	border:1px solid var(--secondary);
-	border-top: none;
+	background-color:transparent;
 	font-size:1rem;
-	margin:0 0 1rem 0;
-    
+	border:none;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+	outline: none;
+}
+.fieldContainer {
+	border: 1px solid var(--secondary);
+	border-radius:.25rem;
+	background-color: var(--white);
+}
+.fieldContainer:focus-within {
+	outline: 2px solid var(--pine-mid);
 }

@@ -9,10 +9,17 @@ import styles from './TabList.module.scss';
 
 const TabList: React.FC<TabListProps> = ({ children, activeTabIndex = 0 }) => {
   const [activeTab, setActiveTab] = useState(activeTabIndex);
+  
+  useEffect(() => {
+    handleTabClick(activeTabIndex);
+  }, [activeTabIndex]);
 
   const updateIndicator = (index:number) => {
+    //@ts-ignore
     const childNodes = Array.from(parentRef?.current?.children);
+    //@ts-ignore
     const L = childNodes[index].offsetLeft + 'px';
+    //@ts-ignore
     const W = childNodes[index].offsetWidth / parentRef.current.offsetWidth * 100 + '%';
     setIndicatorLeft(L);
     setIndicatorWidth(W);
@@ -28,6 +35,7 @@ const TabList: React.FC<TabListProps> = ({ children, activeTabIndex = 0 }) => {
     updateIndicator(index)
     setActiveTab(index);
   };
+
 
   const tabs = React.Children.toArray(children).filter(
     (child): child is ReactElement<TabItemProps> =>

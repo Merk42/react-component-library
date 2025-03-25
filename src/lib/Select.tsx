@@ -20,7 +20,7 @@ const Select: React.FC<SelectProps> = ({ options, value, onChange, label, name }
   };
 
   return (
-    <div>
+    <div className={styles.fieldContainer}>
       {label && <label htmlFor={name} className={styles.label}>{label}</label>}
       <select className={styles.input} id={name} name={name} value={value} onChange={handleChange}>
         {options.map((option) => (

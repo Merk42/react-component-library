@@ -1,0 +1,19 @@
+.accordion {
+    display: block;
+    border-bottom:1px solid var(--black-mid);
+}
+.accordion:first-child{
+    border-top:1px solid var(--black-mid);
+}
+
+.accordion button {
+    width:100%;
+    appearance: none;
+    border: none;
+    background-color: transparent;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 1rem;
+    padding: 10px 0;
+}

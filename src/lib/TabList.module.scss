@@ -16,8 +16,8 @@
 }
 
 
-button,
-button:hover{
+.tabs button,
+.tabs button:hover{
 	all: unset;
 	color:var(--black-mid);
 	padding-bottom:.75rem;
@@ -27,10 +27,10 @@ button:hover{
 	margin-left:0!important; /* button+button margin causes more issues that it solves */
 
 }
-button:hover{
+.tabs button:hover{
 	cursor: pointer;
 }
-button[aria-selected="true"]{
+.tabs button[aria-selected="true"]{
 	/* border-bottom-color:var(--pine-mid); */
 	color: var(--pine-mid);
 }

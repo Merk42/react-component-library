@@ -5,6 +5,7 @@ import BtnIconExample from './examples/BtnIconExample';
 import BadgeExample from './examples/BadgeExample';
 import TabListExample from './examples/TabListExample';
 import AccordionListExample from './examples/AccordionListExample';
+import ButtonExample from './examples/ButtonExample';
 /* TODO
   Dialog
   Carousel
@@ -28,6 +29,7 @@ function App() {
         <BadgeExample/>
         <TabListExample/>
         <AccordionListExample/>
+        <ButtonExample/>
     </main>
   )
 }

@@ -6,7 +6,8 @@ const Container = styled.span<{$size?:string, $bg?:string, $border?: string}>`
         position:absolute;
         top:-1.5rem;
         right:-1.5rem;
-        background-color:green;
+        background-color:var(--brand-color);
+        color:var(--white);
         display:inline-block;
         height:20px;
         min-width:20px;

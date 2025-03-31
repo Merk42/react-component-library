@@ -1,30 +1,34 @@
 import React from "react";
-import { ReactElement, useEffect, useRef, useState } from "react";
+import { ReactElement, useState } from "react";
 import AccordionItem from "./AccordionItem";
-import { TabItemProps, TabListProps } from "../types/TabTypes";
+import { AccordionItemProps, AccordionListProps } from "../types/AccordionTypes";
 import { sanitizeForId } from "../utils/StringUtils";
 import Icon from "./Icon";
-// import "./Tabs.css";
+// import "./Accordions.css";
 import styles from './AccordionList.module.scss';
 
 
-const TabList: React.FC<TabListProps> = ({ children, activeTabIndex = 0 }) => {
-  const [activeTab, setActiveTab] = useState(activeTabIndex);
+const AccordionList: React.FC<AccordionListProps> = ({ children, activeAccordionIndex = 0 }) => {
+  const [activeAccordion, setActiveAccordion] = useState(activeAccordionIndex);
   
-  const handleTabClick = (index: number) => {
-    if (index === activeTab) {
-      setActiveTab(-1);
+  const handleAccordionClick = (index: number) => {
+    if (index === activeAccordion) {
+      setActiveAccordion(-1);
     } else {
-      setActiveTab(index);
+      setActiveAccordion(index);
     }
     
   };
 
 
   const tabs = React.Children.toArray(children).filter(
-    (child): child is ReactElement<TabItemProps> =>
+    (child): child is ReactElement<AccordionItemProps> =>
       React.isValidElement(child) && child.type === AccordionItem
   );
+
+  const isActive = (index:number) => {
+    return activeAccordion === index
+  }
 
   return (
     <div className="custom-tabs">
@@ -36,12 +40,12 @@ const TabList: React.FC<TabListProps> = ({ children, activeTabIndex = 0 }) => {
                 role="tab"
                 id={`tab-${sanitizeForId(tab.props.label)}`}
                 aria-controls={`panel-${sanitizeForId(tab.props.label)}`}
-                aria-selected={activeTab === index}
-                onClick={() => handleTabClick(index)}
+                aria-selected={isActive(index)}
+                onClick={() => handleAccordionClick(index)}
                 >
                 {tab.props.label}
 
-                <Icon style={{'padding':'0 20px'}} icon={activeTab === index ? 'keyboard_arrow_up' : 'keyboard_arrow_down'}/>
+                <Icon style={{'padding':'0 20px'}} icon={isActive(index) ? 'keyboard_arrow_up' : 'keyboard_arrow_down'}/>
 
                 </button>
 
@@ -49,7 +53,7 @@ const TabList: React.FC<TabListProps> = ({ children, activeTabIndex = 0 }) => {
                 <AccordionItem
                 key={index}
                 label={tab.props.label}
-                isActive={activeTab === index ? true : false}
+                isActive={isActive(index) ? true : false}
                 >
                 {tab.props.children}
                 </AccordionItem>
@@ -59,4 +63,4 @@ const TabList: React.FC<TabListProps> = ({ children, activeTabIndex = 0 }) => {
   );
 };
 
-export default TabList;
+export default AccordionList;

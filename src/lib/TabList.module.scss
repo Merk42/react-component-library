@@ -31,8 +31,11 @@
 	cursor: pointer;
 }
 .tabs button[aria-selected="true"]{
-	/* border-bottom-color:var(--pine-mid); */
-	color: var(--pine-mid);
+	color: var(--brand-color);
+}
+.tabs button:focus-visible {
+	color: var(--brand-color);
+	outline:1px solid var(--brand-color);
 }
 
 [role="tablist"] {
@@ -45,7 +48,7 @@
 	right:0;
 	bottom:calc(-1* var(--_tab-border-height));
 	height:var(--_tab-border-height);
-	background-color: var(--pine-mid);
+	background-color: var(--brand-color);
 	scale: var(--_width, 100%) 1;
 	translate: var(--_left, 0);
 	transform-origin: 0 0;

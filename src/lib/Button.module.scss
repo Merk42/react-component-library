@@ -1,0 +1,48 @@
+.button {
+    display: inline-grid;
+    place-items: center;
+    min-height:54px;
+    min-width: 64px;
+
+    background-color: var(--brand-color);
+    color:var(--white);
+    border:none;
+    border-radius:.25rem;
+
+    padding: .75rem;
+}
+button:hover {
+    background-color:hsl(from var(--brand-color) h 50% 50%)
+}
+button:not(:disabled) {
+    cursor: pointer;
+}
+.button > span {
+    font-size: 1rem;
+}
+.button > * {
+    grid-area: 1 / 1;
+}
+
+.button .try {
+    animation:spin 1s linear infinite;
+}
+
+.button:has(.fail) {
+    background-color:red;
+}
+
+.button:has(.success) {
+   background-color:green
+}
+
+@keyframes spin { 
+    100% { 
+        -webkit-transform: rotate(-360deg); 
+        transform:rotate(-360deg); 
+    } 
+}
+
+.button:disabled > span {
+    visibility: hidden;
+}

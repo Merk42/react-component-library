@@ -7,6 +7,12 @@ const Container = styled.button`
     height:48px;
     display: inline-grid;
     place-content: center;
+    border-color:var(--brand-color);
+    color:var(--brand-color);
+    background-color:var(--white);
+    &:hover {
+        background-color:hsl(from var(--brand-color) h 50% 85%)
+    }
 `;
 function BtnIcon(props:any) {
     return (

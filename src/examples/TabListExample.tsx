@@ -5,7 +5,7 @@ import TabItem from "../lib/TabItem";
 function TabListExample() {
     return (
         <Example title="TabList">
-            <TabList activeTabIndex={4}>
+            <TabList activeTabIndex={0}>
                 <TabItem label="alpha">
                     <p>Alpha content</p>
                 </TabItem>

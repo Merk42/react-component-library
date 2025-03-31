@@ -11,10 +11,10 @@
 
     padding: .75rem;
 }
-button:hover {
+.button:hover {
     background-color:hsl(from var(--brand-color) h 50% 50%)
 }
-button:not(:disabled) {
+.button:not(:disabled) {
     cursor: pointer;
 }
 .button > span {

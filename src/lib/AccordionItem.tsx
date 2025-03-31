@@ -4,7 +4,12 @@ import { sanitizeForId } from "../utils/StringUtils";
 import styled from 'styled-components';
 
 const Container = styled.div<{$isActive?:boolean}>`
-    display: ${props => props.$isActive ? 'block' : 'none'}
+    height: ${props => props.$isActive ? 'auto' : '0px'};
+    overflow: hidden;
+    transition-behavior: allow-discrete;
+    transition-property: height;
+    transition-duration: .25s;
+    interpolate-size: allow-keywords;
 `;
 
 

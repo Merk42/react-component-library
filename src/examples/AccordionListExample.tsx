@@ -5,7 +5,7 @@ import AccordionItem from "../lib/AccordionItem";
 function AccordionListExample() {
     return (
         <Example title="AccordionList">
-            <AccordionList activeAccordionIndex={4}>
+            <AccordionList activeAccordionIndex={0}>
                 <AccordionItem label="alpha">
                     <p>Alpha content</p>
                 </AccordionItem>

@@ -17,3 +17,7 @@
     font-size: 1rem;
     padding: 10px 0;
 }
+
+.accordion button[aria-selected=true] {
+    color: var(--brand-color)
+}

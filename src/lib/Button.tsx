@@ -1,4 +1,4 @@
-import {  useEffect, useState } from "react";
+import {  MouseEventHandler, ReactNode, useEffect, useState } from "react";
 import Icon from "./Icon";
 import styles from './Button.module.scss';
 
@@ -18,27 +18,32 @@ function displayIcon(status:string) {
       }
 }
 
-function Button(props:any) {
+interface ButtonProps {
+    status: string;
+    onClick: MouseEventHandler<HTMLButtonElement>;
+    children: ReactNode;
+}
 
+const Button: React.FC<ButtonProps> = ({ status, onClick, children }) => {
     const [displayStatus, setDisplayStatus] = useState('');
     
     useEffect(() => {
-        setDisplayStatus(props.status);
-        if (props.status === 'success' ||  props.status === 'fail') {
+        setDisplayStatus(status);
+        if (status === 'success' ||  status === 'fail') {
             setTimeout(() => {
                 setDisplayStatus('');
             }, 3000);
         }
 
-    }, [props.status]);
+    }, [status]);
 
     return (
         <button
             className={styles.button}
             disabled={displayStatus !== ''}
-            onClick={props.onClick}
+            onClick={onClick}
         >
-            <span>{props.children}</span>
+            <span>{children}</span>
             { displayStatus !== '' &&
                 <div className={styles[displayStatus]}>
                     <Icon icon={displayIcon(displayStatus)}/>

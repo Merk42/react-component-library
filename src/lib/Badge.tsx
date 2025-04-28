@@ -1,3 +1,4 @@
+import { ReactNode } from 'react';
 import styled from 'styled-components';
 
 const Container = styled.span<{$size?:string, $bg?:string, $border?: string}>`
@@ -21,15 +22,23 @@ function formatNumber (number: number) {
     return  new Intl.NumberFormat("en-US").format(number)
 }
 
-function Badge (props:any) {
+interface BadgeProps {
+    size: string;
+    bg: string;
+    border: string;
+    number: number;
+    children: ReactNode
+}
+
+const Badge: React.FC<BadgeProps> = ({size, bg, border, number,children}) => {
     return (
         <Container
-            $size={props.size}
-            $bg={props.bg}
-            $border={props.border}
+            $size={size}
+            $bg={bg}
+            $border={border}
             >
-            <span>{formatNumber(props.number)}</span>
-            {props.children}
+            <span>{formatNumber(number)}</span>
+            {children}
         </Container>
     )
 }

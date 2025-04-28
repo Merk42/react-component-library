@@ -14,10 +14,11 @@ const Container = styled.button`
         background-color:hsl(from var(--brand-color) h 50% 85%)
     }
 `;
-function BtnIcon(props:any) {
+
+const BtnIcon: React.FC<{icon:string}> = ({ icon }) => {
     return (
         <Container>
-            <Icon icon={props.icon} />
+            <Icon icon={icon} />
         </Container>
     )
 }

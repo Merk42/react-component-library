@@ -10,10 +10,9 @@ const IconContainer = styled.span<{$size?:string, $bg?:string, $border?: string}
     text-align:center;
 `;
 
-
-function Icon(props:any) {
+const Icon: React.FC<{icon:string}> = ({icon}) => {
     return (
-        <IconContainer>{props.icon}</IconContainer>
+        <IconContainer>{icon}</IconContainer>
     )
 }
 

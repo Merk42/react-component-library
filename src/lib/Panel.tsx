@@ -1,3 +1,4 @@
+import { ReactNode } from 'react';
 import styled from 'styled-components';
 
 const Container = styled.div<{$size?:string, $bg?:string, $border?: string}>`
@@ -52,14 +53,21 @@ function bgcolor(color?:string):string {
     }  
 }
 
-function Panel (props:any) {
+interface PanelProps {
+    size: string;
+    bg: string;
+    border: string;
+    children: ReactNode
+}
+
+const Panel: React.FC<PanelProps> = ({size, bg, border, children}) => {
     return (
         <Container
-            $size={props.size}
-            $bg={props.bg}
-            $border={props.border}
+            $size={size}
+            $bg={bg}
+            $border={border}
             >
-            {props.children}
+            {children}
         </Container>
     )
 }
